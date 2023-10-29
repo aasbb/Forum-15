@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <string.h>
+
+// Fungsi selection sorting yang digunakan untuk mengurutkan string
+void selectionSorting(char arr[][20], int n)
+{
+    // Deklarasi variabel indeks minimal dan variabel tampungan
+    int minIndeks;
+    char temp[20];
+    for (int i = 0; i < n - 1; i++)
+    {
+        minIndeks = i; // Inisialisasi variabel indeks minimal
+        for (int j = i + 1; j < n; j++)
+        {
+            // Membandingkan dua nilai untuk menemukan elemen dari indeks terkecil
+            if (strcmp(arr[j], arr[minIndeks]) < 0)
+            {
+                minIndeks = j;
+            }
+        }
+
+        // Jika indeks minimal bukan i, maka tukar elemen-elemen di arr[i] dengan elemen-elemen di arr[minIndeks]
+        if (minIndeks != i)
+        {
+            strcpy(temp, arr[i]);
+            strcpy(arr[i], arr[minIndeks]);
+            strcpy(arr[minIndeks], temp);
+        }
+    }
+}
+
+int main()
+{
+    printf("==============================================\n");
+    printf("============== \033[1;32mPROGRAM SORTING\033[0m ===============\n"); // saya memberikan warna hijau
+    printf("==============================================\n");
+
+    // Deklarasi dan inisialisasi banyaknya string nama
+    char nama[10][20] = {"Fahmi Harahap", "Icha Nurlisa", "Agus Gumilang", "Zelda Zuraida", "Felix Halim", "Deddy Corbuizer", "Hassan Makmur", "Makmun Sukur", "Bella Christie", "Chelshe Love"}; // Deklarasi dan inisialisasi string nama
+    int n = 10;                                                                                                                                                                                   // Deklarasi dan inisialisasi banyaknya string nama
+
+    // Mencetak string nama yang belum di-sorting
+    printf("\033[1;32mData Sebelum Diurutkan:\033[0m\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s\n", nama[i]);
+    }
+
+    // Memanggil fungsi selectionSorting agar string nama yang sudah disorting dapat ditampilkan
+    selectionSorting(nama, n);
+
+    // Mencetak string nama yang sudah di-sorting
+    printf("\n\033[1;32mData Setelah Diurutkan:\033[0m\n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%s\n", nama[i]);
+    }
+
+    return 0;
+}
